@@ -1,25 +1,42 @@
 #[derive(Debug)]
-struct User {
-    username: String,
-    email: String,
-    sign_in_count: u64,
-    active: bool,
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
+
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn set_width(&mut self, width: u32) {
+        self.width = width;
+    }
 }
 
 fn main() {
-    let user1 = build_user(
-        String::from("someone@example.com"),
-        String::from("someusername123"),
-    );
-    println!("user1: {:?}", user1);
-    println!("user1.email: {}", user1.email);
-}
+    let mut rect1 = Rectangle {
+        width: 30,
+        height: 50,
+    };
 
-fn build_user(email: String, username: String) -> User {
-    User {
-        email: email,
-        username: username,
-        active: true,
-        sign_in_count: 1,
-    }
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        rect1.area()
+    );
+
+    rect1.set_width(10);
+
+    println!("rect1 is {:?}", rect1.area());
+
+    let square = Rectangle::square(3);
+
+    println!("The area of the square is {} square pixels.", square.area());
 }
