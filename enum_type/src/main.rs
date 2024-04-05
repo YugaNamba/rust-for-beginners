@@ -1,24 +1,20 @@
-#[derive(Debug)]
-enum Message {
-    Quit,
-    ChangeColor(i32, i32, i32),
-    Move { x: i32, y: i32 },
-    Write(String),
-}
-
-impl Message {
-    fn show(&self) {
-        println!("{:?}", self);
-    }
+enum Color {
+    Red,
+    Green,
+    Blue,
+    Yellow,
 }
 
 fn main() {
-    let mut message = Message::Quit;
-    message.show();
-    message = Message::ChangeColor(0, 160, 255);
-    message.show();
-    message = Message::Move { x: 10, y: 30 };
-    message.show();
-    message = Message::Write("Hello!".to_string());
-    message.show();
+    let color = Color::Red;
+    println!("Color: {}", color_to_str(&color));
+}
+
+fn color_to_str(color: &Color) -> &str {
+    match color {
+        Color::Red => "#FF0000",
+        Color::Green => "#00FF00",
+        Color::Blue => "#0000FF",
+        Color::Yellow => "#FFFF00",
+    }
 }
