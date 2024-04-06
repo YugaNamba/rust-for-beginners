@@ -1,0 +1,5 @@
+[database]
+url = "postgres://postgres:password@dev:5432/postgres"
+
+[gcp]
+project_id = "my-project-dev"

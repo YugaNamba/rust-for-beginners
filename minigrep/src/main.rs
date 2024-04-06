@@ -1,16 +1,21 @@
 use std::env;
+use std::error::Error;
 
 use minigrep;
 
-fn main() {
-    let args: Vec<String> = env::args().collect();
-    let config = minigrep::Config::new(args).unwrap_or_else(|err| {
-        println!("Problem parsing arguments: {}", err);
-        std::process::exit(1);
-    });
+mod settings;
+use settings::Settings;
 
-    if let Err(e) = minigrep::run(config) {
-        println!("Application error: {}", e);
-        std::process::exit(1);
-    }
+fn main() -> Result<(), Box<dyn Error>> {
+    let settings = Settings::new()?;
+    println!("{:?}", settings);
+
+    let args: Vec<String> = env::args().collect();
+    let config = minigrep::Config::new(args)?;
+
+    println!("Searching for {:?}", config);
+
+    minigrep::run(config)?;
+
+    Ok(())
 }

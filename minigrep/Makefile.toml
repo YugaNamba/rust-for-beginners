@@ -1,0 +1,14 @@
+[tasks.local]
+command = "cargo"
+args = ["run", "--", "${@}"]
+env = { "RUN_MODE" = "local" }
+
+[tasks.dev]
+command = "cargo"
+args = ["run", "--", "${@}"]
+env = { "RUN_MODE" = "dev" }
+
+[tasks.prod]
+command = "cargo"
+args = ["run", "--", "${@}"]
+env = { "RUN_MODE" = "prod" }
